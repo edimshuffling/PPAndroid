@@ -4,7 +4,11 @@
 
         orientation: 'vertical'
 
+        padding: [10,50,10,50]
 
+        spacing: 50
+		
+		
 
         Label:
 
@@ -12,13 +16,23 @@
 
             font_size: 32
 
-        Button:
-
-            text: "Disconnect"
-
-            font_size: 24
-
-            on_press: root.disconnect()
+        BoxLayout:
+		
+			orientation: 'vertical'
+			
+			
+		
+			Label:
+			
+			Label:
+		
+			Button:
+	
+				text: "Disconnect"
+	
+				font_size: 24
+	
+				on_press: root.disconnect()
 
 <Login>:
 
@@ -49,8 +63,8 @@
 
 
             Label:
-
-                text: 'Login'
+			
+			    text: 'Login'
 
                 font_size: 18
 
@@ -68,6 +82,8 @@
 
                 font_size: 28
 
+				cursor_color: [0, 0, 0, 1]
+				
 
 
         BoxLayout:
@@ -75,7 +91,7 @@
             orientation: 'vertical'
 
             Label:
-
+			
                 text: 'Password'
 
                 halign: 'left'
@@ -95,12 +111,14 @@
                 password:True
 
                 font_size: 28
+				
+				cursor_color: [0, 0, 0, 1]
 
 
 
         Button:
 
-            text: 'Connected'
+            text: 'Connect'
 
             font_size: 24
 

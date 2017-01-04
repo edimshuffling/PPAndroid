@@ -1,14 +1,10 @@
-import kivy
-kivy.require('1.9.1') # replace with your current kivy version !
-
 from kivy.app import App
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
 import os
 
+sUsername = 'edimshuffling'
+sPassword = 'lmfao123'
 class Connected(Screen):
     def disconnect(self):
         self.manager.transition = SlideTransition(direction="right")
@@ -20,14 +16,23 @@ class Login(Screen):
         app = App.get_running_app()
         app.username = loginText
         app.password = passwordText
-        self.manager.transition = SlideTransition(direction="left")
-        self.manager.current = 'connected'
-        app.config.read(app.get_application_config())
-        app.config.write()
+        if loginText == sUsername and passwordText == sPassword:
+            self.manager.transition = SlideTransition(direction="left")
+            self.manager.current = 'connected'
+            app.config.read(app.get_application_config())
+            app.config.write()
+        elif loginText != sUsername or passwordText != sPassword:
+            print("Wrong username or password")
+            color = (1, 0, 0, 1)
+            self.ids['login'].background_color = color
+            self.ids['password'].background_color = color
 
     def resetForm(self):
         self.ids['login'].text = ""
         self.ids['password'].text = ""
+        color = (1, 1, 1, 1)
+        self.ids['login'].background_color = color
+        self.ids['password'].background_color = color
 
 class LoginApp(App):
     username = StringProperty(None)
@@ -51,9 +56,5 @@ class LoginApp(App):
         return super(LoginApp, self).get_application_config(
             '%s/config.cfg' % (conf_directory))
 
-class MyApp(App):
-    def build(self):
-        return LoginScreen()
-
 if __name__ == '__main__':
-    MyApp().run()
+    LoginApp().run()
