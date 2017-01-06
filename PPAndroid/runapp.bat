@@ -1,4 +1,7 @@
 @ECHO off
+::you need this file in the same folder as the python file
+::you also need python 3.5 installed to PATH
+
 CHCP 65001 > NUL
 CD /d "%~dp0"
 
