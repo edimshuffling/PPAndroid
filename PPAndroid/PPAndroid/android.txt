@@ -1,0 +1,3 @@
+title=PPAndroid
+author=Alex
+orientation=portrait
