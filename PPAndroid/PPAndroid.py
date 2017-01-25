@@ -1,13 +1,12 @@
+import kivy
 from kivy.app import App
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-#from kivy.clock import Clock
 import os
-from plyer import notification
+from plyer import notification, sms
 
-sUsername = 'edimshuffling'
-sPassword = 'lmfao123'
-priKey = 'secret'
+sUsername = 'Abc'
+sPassword = '123'
 
 def switch(Light):
         if Light:
@@ -16,30 +15,27 @@ def switch(Light):
             return True
 
 class Connected(Screen):
-#    def start(dt):
-#        Light = True
-#        return Light
+    recipient = '1234567890'
 
     def disconnect(self):
         self.manager.transition = SlideTransition(direction="right")
         self.manager.current = 'login'
         self.manager.get_screen('login').resetForm()
 
-    def open(self):
-        notification.notify(title='Door open', message='You have sent a command to open the door.', app_name='', app_icon='', timeout=10)
+    def open(self, recipient):
+        sms.send(recipient=recipient, message='Open door.')
+        notification.notify(title='Door open', message='You have sent a command to open the door.', app_name='', app_icon='', timeout=5)
         print("Door open")
 
-    def lOn(self):
-        notification.notify(title='Light on', message='You have sent a command to turn on the light.', app_name='', app_icon='', timeout=10)
+    def lOn(self, recipient):
+        sms.send(recipient=recipient, message='Turn on light.')
+        notification.notify(title='Light on', message='You have sent a command to turn on the light.', app_name='', app_icon='', timeout=5)
         print("Light on")
 
-
-    def lOff(self):
-        notification.notify(title='Light off', message='You have sent a command to turn off the light.', app_name='', app_icon='', timeout=10)
+    def lOff(self,recipient):
+        sms.send(recipient=recipient, message='Turn off light.')
+        notification.notify(title='Light off', message='You have sent a command to turn off the light.', app_name='', app_icon='', timeout=5)
         print("Light off")
-
-    
-#    Clock.schedule_once(start, -1)
 
 class Login(Screen):
     def do_login(self, loginText, passwordText):

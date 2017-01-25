@@ -1,13 +1,12 @@
+import kivy
 from kivy.app import App
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-#from kivy.clock import Clock
 import os
 from plyer import notification
 
 sUsername = 'edimshuffling'
 sPassword = 'lmfao123'
-priKey = 'secret'
 
 def switch(Light):
         if Light:
@@ -16,10 +15,6 @@ def switch(Light):
             return True
 
 class Connected(Screen):
-#    def start(dt):
-#        Light = True
-#        return Light
-
     def disconnect(self):
         self.manager.transition = SlideTransition(direction="right")
         self.manager.current = 'login'
@@ -33,13 +28,9 @@ class Connected(Screen):
         notification.notify(title='Light on', message='You have sent a command to turn on the light.', app_name='', app_icon='', timeout=10)
         print("Light on")
 
-
     def lOff(self):
         notification.notify(title='Light off', message='You have sent a command to turn off the light.', app_name='', app_icon='', timeout=10)
         print("Light off")
-
-    
-#    Clock.schedule_once(start, -1)
 
 class Login(Screen):
     def do_login(self, loginText, passwordText):
