@@ -1,4 +1,5 @@
 @ECHO off
+title ppandroid batch startup
 CHCP 65001 > NUL
 CD /d "%~dp0"
 
@@ -21,7 +22,7 @@ ENDLOCAL
 
 IF EXIST %SYSTEMROOT%\py.exe (
     CMD /k py.exe -3.5 PPandroid.py
-    EXIT
+    GOTO end
 )
 
 python --version > NUL 2>&1
